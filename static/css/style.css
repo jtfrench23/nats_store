@@ -1,0 +1,6 @@
+.product_image{
+    width: 200px;
+}
+.product_block{
+    display: flex;
+}
