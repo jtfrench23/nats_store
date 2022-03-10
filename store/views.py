@@ -1,7 +1,7 @@
 
 from django.shortcuts import render, HttpResponse, redirect
 from .models import Product
-from .forms import ProductForm
+from .forms import ProductForm, EditForm
 from django.http import HttpResponseRedirect
 
 def index(request):
@@ -9,9 +9,7 @@ def index(request):
         'all_products': Product.objects.all()
     }
     return render(request, 'index.html', context)
-def add_image(request):
-    Product.objects.create(request.POST, request.FILES)
-    return redirect('/')
+
 def add_product(request):
     context ={}
     if request.method=="POST":
@@ -48,7 +46,32 @@ def product_manager(request):
     return render(request, 'product_manager.html', context)
 def edit_product(request, id):
     context={'product':Product.objects.get(id=id)}
-    return render(request, 'product_edit.html', context)
+    if request.method=="POST":
+        form = EditForm(request.POST)
+        if form.is_valid():
+            p=Product.objects.get(id=id)
+            name = request.POST['name']
+            slug = request.POST['slug']
+            description=request.POST['description']
+            product_type=request.POST['product_type']
+            price=request.POST['price']
+            size=request.POST['size']
+            stock=request.POST['stock']
+            p.name=name
+            p.slug=slug
+            p.description=description
+            p.product_type=product_type
+            p.price=price
+            p.size=size
+            p.stock=stock
+            p.save()
+            return redirect('/product_manager')
+    else:
+        p=p=Product.objects.get(id=id)
+        data_dict={'name': p.name, 'slug': p.slug, 'description':p.description, 'product_type': p.product_type, 'price':p.price, 'size':p.size, 'stock':p.stock}
+        form = EditForm(data_dict)
+    context['form']= form
+    return render(request, "product_edit.html", context)
 def delete_product(request, id):
     p=Product.objects.get(id=id)
     p.delete()

@@ -7,7 +7,13 @@
     <title>Edit Product</title>
 </head>
 <body>
-    <h1>Update the Product</h1>
-    <p>{{ product.name }}</p>
+    <h1>Update Product {{ product.id }} </h1>
+    <form action="" method="post">
+            
+        {% csrf_token %}
+
+        {{ form.as_p }}
+        <input type="submit" value="Submit" class="btn btn-secondary">
+    </form>
 </body>
 </html>
