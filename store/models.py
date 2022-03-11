@@ -20,6 +20,9 @@ class Customer(models.Model):
     birth_date = models.DateField(null = True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+class Owner(models.Model):
+    email=models.EmailField(unique=True)
+    password=models.CharField(max_length=255)
 class Order (models.Model):
     PAYMENT_CHOICES = [
         ('P', 'pending'),

@@ -6,5 +6,7 @@ urlpatterns = [
     path('edit/product/<int:id>', views.edit_product, name="edit_product"),
     path('delete/product/<int:id>', views.delete_product, name="delete_product"),
     path('product_manager', views.product_manager),
-    
+    path('owner', views.owner_login),
+    path('/register_owner', views.register_owner),
+    path('/validate_owner', views.validate_owner_login),
 ]
