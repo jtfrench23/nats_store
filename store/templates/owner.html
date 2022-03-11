@@ -8,6 +8,7 @@
 </head>
 <body>
     <form action="/register_owner" method="post">
+        {% csrf_token %}
         <label>
             email:
             <input type="email" name="email" id="email">
@@ -23,6 +24,7 @@
         <button type="submit">Submit</button>
     </form>
     <form action="/validate_owner" method="post">
+        {% csrf_token %}
         <label>
             Email:
             <input type="email" name="email" id="email">

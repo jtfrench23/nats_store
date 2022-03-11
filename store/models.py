@@ -23,6 +23,8 @@ class Customer(models.Model):
 class Owner(models.Model):
     email=models.EmailField(unique=True)
     password=models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 class Order (models.Model):
     PAYMENT_CHOICES = [
         ('P', 'pending'),

@@ -10,17 +10,27 @@ def index(request):
         'all_products': Product.objects.all()
     }
     return render(request, 'index.html', context)
+
+
 def owner_login(request):
     return render(request, 'owner.html')
+
+
 def register_owner(request):    
     # include some logic to validate user input before adding them to the database!
     password = request.POST['password']
     pw_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()  # create the hash    
-    print(pw_hash)      # prints something like b'$2b$12$sqjyok5RQccl9S6eFLhEPuaRaJCcH3Esl2RWLm/cimMIEnhnLb7iC'    
+    print(pw_hash,"$$$$$$$$$$$$$$$$$$$$")      # prints something like b'$2b$12$sqjyok5RQccl9S6eFLhEPuaRaJCcH3Esl2RWLm/cimMIEnhnLb7iC'    
     # be sure you set up your database so it can store password hashes this long (60 characters)
     # make sure you put the hashed password in the database, not the one from the form!
     Owner.objects.create(email=request.POST['email'], password=pw_hash) 
-    return redirect("/") # never render on a post, always redirect!    
+    user = Owner.objects.filter(email=request.POST['email'])
+    if user: # note that we take advantage of truthiness here: an empty list will return false
+        logged_user = user[0] 
+        request.session['owner_id'] = logged_user.id
+    return redirect("/product_manager") # never render on a post, always redirect!  
+
+
 def validate_owner_login(request):
     user = Owner.objects.filter(email=request.POST['email']) # why are we using filter here instead of get?
     if user: # note that we take advantage of truthiness here: an empty list will return false
@@ -36,6 +46,8 @@ def validate_owner_login(request):
     # if we didn't find anything in the database by searching by username or if the passwords don't match, 
     # redirect back to a safe route
     return redirect("/owner")
+
+
 def add_product(request):
     context ={}
     if request.method=="POST":
@@ -65,11 +77,15 @@ def add_product(request):
         form = ProductForm()
     context['form']= form
     return render(request, "add_product.html", context)
+
+
 def product_manager(request):
     context={
         'all_products': Product.objects.all()
     }
     return render(request, 'product_manager.html', context)
+
+
 def edit_product(request, id):
     context={'product':Product.objects.get(id=id)}
     if request.method=="POST":
@@ -98,6 +114,8 @@ def edit_product(request, id):
         form = EditForm(data_dict)
     context['form']= form
     return render(request, "product_edit.html", context)
+
+    
 def delete_product(request, id):
     p=Product.objects.get(id=id)
     p.delete()
