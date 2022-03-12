@@ -124,9 +124,14 @@ def edit_product(request, id):
         context['form']= form
         return render(request, "product_edit.html", context)
 
+def show_product(request, id):
+    context={'product':Product.objects.get(id=id)}
+    return render(request, 'show.html', context)
+
 def logout(request):
     request.session.clear()
     return redirect('/')
+
 def delete_product(request, id):
     p=Product.objects.get(id=id)
     p.delete()

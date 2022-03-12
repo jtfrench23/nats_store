@@ -15,7 +15,9 @@
     </div>
     {% for product in all_products %}
         <div class="product_block">
-            <img src="http://127.0.0.1:8000/media/{{ product.product_image }}" alt="{{ product.name }}" class="img-thumbnail product_image">
+            <a href="/show/product/{{product.id}}">
+                <img src="http://127.0.0.1:8000/media/{{ product.product_image }}" alt="{{ product.name }}" class="img-thumbnail product_image">
+            </a>
             <p>{{product.name}}</p>
             <p>${{product.price}}</p>
         </div>
