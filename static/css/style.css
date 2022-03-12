@@ -3,4 +3,12 @@
 }
 .product_block{
     display: flex;
+    justify-content: space-around;
+}
+.container{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100vw;
 }
