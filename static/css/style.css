@@ -3,7 +3,7 @@
 }
 .product_block{
     display: flex;
-    justify-content: space-around;
+    gap: 10px;
 }
 .container{
     padding: 20px;
