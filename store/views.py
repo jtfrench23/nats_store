@@ -4,6 +4,7 @@ from .models import Product, Owner
 from .forms import ProductForm, EditForm
 from django.http import HttpResponseRedirect
 import bcrypt
+from cart.forms import CartAddProductForm
 
 def index(request):
     context={
@@ -76,6 +77,7 @@ def add_product(request):
                                     )
                 obj.save()
                 print(obj)
+                return redirect('/product_manager')
         else:
             form = ProductForm()
         context['form']= form
@@ -125,8 +127,20 @@ def edit_product(request, id):
         return render(request, "product_edit.html", context)
 
 def show_product(request, id):
-    context={'product':Product.objects.get(id=id)}
-    return render(request, 'show.html', context)
+    product = Product.objects.get(id=id)
+    cart_product_form = CartAddProductForm()
+    return render(request, 'show.html', {'product':product, 'cart_product_form':cart_product_form})
+
+# def add_product_to_order(request, id):
+#     if 'cart' not in request.session:
+#         request.session['cart'] = Cart()
+#     info = {
+#         'cart': request.session['cart'],
+#         'quantity': request.POST['quantity']
+#     }
+#     p= Product.objects.get(id=id)
+#     p.add_to_cart(info)
+#     return redirect(f'/show/product/{id}')
 
 def logout(request):
     request.session.clear()

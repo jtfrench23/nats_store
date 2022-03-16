@@ -16,26 +16,12 @@
             <img src="http://127.0.0.1:8000/media/{{ product.product_image }}" alt="{{product.name}}" class="product_image">
             <p>{{product.description}}</p>
         </div>
-        <div class="product_block">
-            <p>${{product.price}}</p>
-            {% if product.product_type == "shirt" %}
-                <form action="/add_to_cart/{{product.id}}" method="post">
-                    <label>
-                        Select Size:
-                        <select name="size" id="size">
-                            <option value="small">Small</option>
-                            <option value="medium">Medium</option>
-                            <option value="large">Large</option>
-                            <option value="xl">X-Large</option>
-                            <option value="xxl">XX-Large</option>
-                        </select>
-                    </label>
-                    <button type="submit">Add to Cart</button>
-                </form>
-            {% else %}
-                <a href="/add_to_cart/{{product.id}}"><button>Add to Cart</button> </a>
-            {% endif %}
-        </div>
+        <p>${{product.price}}</p>
+        <form action="{% url 'cart:cart_add' product.id %}" method="post">
+            {% csrf_token %}
+            {{ cart_product_form }}
+            <input type="submit" value="Add to Cart">
+        </form>
     </div>
 </body>
 </html>

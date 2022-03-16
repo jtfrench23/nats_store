@@ -10,5 +10,6 @@ urlpatterns = [
     path('register_owner', views.register_owner),
     path('validate_owner', views.validate_owner_login),
     path('logout', views.logout),
-    path('show/product/<int:id>', views.show_product)
+    path('show/product/<int:id>', views.show_product),
+    # path('add/product/<int:id>',views.add_product_to_order),
 ]
