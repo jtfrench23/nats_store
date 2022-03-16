@@ -26,7 +26,7 @@
             {% with product=item.product %}
                     <tr>
                         <td>
-                            <a href="{{product.get_absolute_url}}">
+                            <a href="/show/product/{{product.id}}">
                                 <img src="http://127.0.0.1:8000/media/{{ product.product_image }}" alt="{{product.name}}" class="img-thumbnail card-img-top product_image" style="max-width: 10rem; max-height: 10rem;">
                             </a>
                         </td>
