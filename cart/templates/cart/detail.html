@@ -47,14 +47,14 @@
                             ${{item.total_price}}
                         </td>
                     </tr>
-            
+            {% endwith %}
+            {% endfor %}
             <tr class="total">
                 <td>Total</td>
                 <td colspan="4"></td>
-                <td class="num" >${{ cart.total_price}}</td>
+                <td class="num" >${{ cart.get_total_price }}</td>
             </tr>
-            {% endwith %}
-            {% endfor %}
+            
         </tbody>
     </table>
     <p class="text-right">
