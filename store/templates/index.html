@@ -11,15 +11,24 @@
 </head>
 <body>
     <div id="header">
-        <h1>French Designs</h1>
+        <img src="static/css/assets/Untitled-Artwork (1).jpg" alt="French Designs Logo" id="headerLogo">
     </div>
     <div class="container-fluid">
-        <div class="row justify-content-around  align-self-center">
+        <div id="subHead" class="row justify-content-around align-content-center align-self-center">
+            <a href="#" class="col text-center">Earrings</a>
+            <a href="#" class="col text-center">Shirts</a>
+            <a href="#" class="col text-center">Signs</a>
+            <a href="#" class="col text-center">Contact Us</a>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <h2>All Products</h2>
+        <div class="row justify-content-around align-self-center">
         {% for product in all_products %}
-                <div class="text-center col-sm-12 col-md-6  col-lg-3" >
-                    <div class="p-1 align-items-center">
+                <div class="text-center col-sm-12 col-md-6 col-lg-3 product_box" >
+                    <div class="align-items-center">
                         <a href="/show/product/{{product.id}}">
-                            <img src="http://127.0.0.1:8000/media/{{ product.product_image }}" alt="{{ product.name }}" class="img-thumbnail card-img-top product_image" style="max-width:15rem; max-height: 10rem;">
+                            <img src="http://127.0.0.1:8000/media/{{ product.product_image }}" alt="{{ product.name }}" class="img card-img-top product_image col-10">
                         </a>
                         <p class="card-title">{{product.name}}</p>
                         <p class="card-text">${{product.price}}</p>
