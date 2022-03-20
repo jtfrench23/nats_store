@@ -1,7 +1,7 @@
 
 from os import name
 from django.shortcuts import render, HttpResponse, redirect
-from .models import Product, Owner
+from .models import Product, Owner, Customer
 from .forms import ProductForm, EditForm
 from django.http import HttpResponseRedirect
 import bcrypt
@@ -57,7 +57,25 @@ def register_owner(request):
         return redirect("/product_manager")
     else:
         messages.error(request, 'Passwords do not match')
-        return redirect('/owner') # never render on a post, always redirect!  
+        return redirect('/owner')   
+
+def register_customer(request):    
+    # include some logic to validate user input before adding them to the database!
+    if request.POST['password']==request.POST['password_confirm']:
+        password = request.POST['password']
+        pw_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()  # create the hash    
+        print(pw_hash,"$$$$$$$$$$$$$$$$$$$$")      # prints something like b'$2b$12$sqjyok5RQccl9S6eFLhEPuaRaJCcH3Esl2RWLm/cimMIEnhnLb7iC'    
+        # be sure you set up your database so it can store password hashes this long (60 characters)
+        # make sure you put the hashed password in the database, not the one from the form!
+        Customer.objects.create(email=request.POST['email'], password=pw_hash) 
+        user = Owner.objects.filter(email=request.POST['email'])
+        if user: # note that we take advantage of truthiness here: an empty list will return false
+            logged_user = user[0] 
+            request.session['owner_id'] = logged_user.id
+        return redirect("/")
+    else:
+        messages.error(request, 'Passwords do not match')
+        return redirect('/register')
 
 
 def validate_owner_login(request):
