@@ -2,19 +2,24 @@ body{
     color: rgb(189, 77, 57);
 }
 .main_product{
-    width: 25vw;
+    min-width: 200px;
+    max-width: 400px;
+    
 }
 p{
-    font-size: 1.75rem;
+    /* font-size: 1.75rem; */
+    text-size-adjust: 50%;
+    margin: 10px;
 }
 h1{
     font-size: 3rem;
     margin: 10px;
 }
 label{
-    font-size:1.75rem;
+    text-size-adjust: 50%;
+    margin: 5px;
 }
 select{
-    font-size: 1.5rem;
+    text-size-adjust: 50%;
     margin: 5px;
 }

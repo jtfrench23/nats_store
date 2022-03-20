@@ -1,4 +1,5 @@
 
+from os import name
 from django.shortcuts import render, HttpResponse, redirect
 from .models import Product, Owner
 from .forms import ProductForm, EditForm
@@ -7,12 +8,34 @@ import bcrypt
 from cart.forms import CartAddProductForm
 from django.contrib import messages
 
+
 def index(request):
     context={
-        'all_products': Product.objects.all()
+        'all_products': Product.objects.all(),
+        'product_type': 'All Products',
     }
     return render(request, 'index.html', context)
 
+def earrings(request):
+    context={
+        'all_products': Product.objects.all().filter(product_type = 'earrings'),
+        'product_type': 'Earrings',
+    }
+    return render(request, 'index.html', context)
+
+def shirts(request):
+    context={
+        'all_products': Product.objects.all().filter(product_type = 'shirt'),
+        'product_type': 'Shirts',
+    }
+    return render(request, 'index.html', context)
+
+def signs(request):
+    context={
+        'all_products': Product.objects.all().filter(product_type = 'sign'),
+        'product_type': 'Signs',
+    }
+    return render(request, 'index.html', context)
 
 def owner_login(request):
     return render(request, 'owner.html')
@@ -134,7 +157,9 @@ def edit_product(request, id):
 def show_product(request, id):
     product = Product.objects.get(id=id)
     cart_product_form = CartAddProductForm()
-    return render(request, 'show.html', {'product':product, 'cart_product_form':cart_product_form})
+    similar_products = Product.objects.all().filter(product_type = product.product_type).exclude(name = product.name)[:4]
+    return render(request, 'show.html', {'product':product, 'cart_product_form':cart_product_form, 'all_products':similar_products})
+
 
 # def add_product_to_order(request, id):
 #     if 'cart' not in request.session:

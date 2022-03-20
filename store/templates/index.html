@@ -15,14 +15,15 @@
     </div>
     <div class="container-fluid">
         <div id="subHead" class="row justify-content-around align-content-center align-self-center">
-            <a href="#" class="col text-center">Earrings</a>
-            <a href="#" class="col text-center">Shirts</a>
-            <a href="#" class="col text-center">Signs</a>
-            <a href="#" class="col text-center">Contact Us</a>
+            <a href="/earrings" class="col-2 text-center">Earrings</a>
+            <a href="/shirts" class="col-2 text-center">Shirts</a>
+            <a href="/signs" class="col-2 text-center">Signs</a>
+            <a href="#" class="col-2 text-center">Contact Us</a>
+            <a href="/cart" class="col-2 text-center">Cart</a>
         </div>
     </div>
     <div class="container-fluid">
-        <h2>All Products</h2>
+        <h2>{{ product_type }}</h2>
         <div class="row justify-content-around align-self-center">
         {% for product in all_products %}
                 <div class="text-center col-sm-12 col-md-6 col-lg-3 product_box" >
