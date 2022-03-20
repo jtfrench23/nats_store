@@ -32,9 +32,9 @@ class Customer(models.Model):
     last_name = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
     phone_number = models.CharField(max_length=255)
-    birth_date = models.DateField(null = True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    password = models.CharField(max_length=255, default='password')
     objects = CustomerManager()
 
 

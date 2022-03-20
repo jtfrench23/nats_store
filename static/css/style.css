@@ -34,6 +34,10 @@ h2{
     font-size: 2.5rem;
     color: rgb(189, 77, 57);
 }
+h3{
+    font-size: 2.5rem;
+    color: white;
+}
 .smallImage{
     width: 10px;
 }

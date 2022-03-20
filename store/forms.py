@@ -26,7 +26,6 @@ class CustomerForm(forms.Form):
     last_name = forms.CharField()
     email = forms.EmailField()
     phone_number = forms.CharField()
-    birth_date = forms.DateField(widget=forms.DateInput)
     password=forms.CharField(widget=forms.PasswordInput)
     password_confirm=forms.CharField(widget=forms.PasswordInput)
 class LoginForm(forms.Form):

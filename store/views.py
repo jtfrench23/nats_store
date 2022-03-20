@@ -10,9 +10,14 @@ from django.contrib import messages
 
 
 def index(request):
+    if 'user_id' in request.session:
+        user = Customer.objects.get(id=request.session['user_id'])
+    else:
+        user=False
     context={
         'all_products': Product.objects.all(),
         'product_type': 'All Products',
+        'user': user,
     }
     return render(request, 'index.html', context)
 
