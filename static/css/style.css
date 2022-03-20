@@ -37,3 +37,7 @@ h2{
 .smallImage{
     width: 10px;
 }
+#headerImageSmall{
+    max-height: 300px;
+    max-width: 600px;
+}

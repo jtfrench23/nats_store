@@ -14,5 +14,7 @@ urlpatterns = [
     path('validate_owner', views.validate_owner_login),
     path('logout', views.logout),
     path('show/product/<int:id>', views.show_product),
-    # path('add/product/<int:id>',views.add_product_to_order),
+    path('login', views.login_register),
+    path('register/submit', views.register_customer),
+    path('login/user', views.login_user)
 ]

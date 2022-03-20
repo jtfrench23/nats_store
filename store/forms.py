@@ -21,3 +21,14 @@ class EditForm(forms.Form):
     price = forms.DecimalField()
     size = forms.CharField()
     stock = forms.IntegerField()
+class CustomerForm(forms.Form):
+    first_name = forms.CharField()
+    last_name = forms.CharField()
+    email = forms.EmailField()
+    phone_number = forms.CharField()
+    birth_date = forms.DateField(widget=forms.DateInput)
+    password=forms.CharField(widget=forms.PasswordInput)
+    password_confirm=forms.CharField(widget=forms.PasswordInput)
+class LoginForm(forms.Form):
+    email = forms.EmailField()
+    password = forms.CharField(widget=forms.PasswordInput)

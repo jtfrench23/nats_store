@@ -9,6 +9,7 @@ mysqlclient = "*"
 python-dotenv = "*"
 django-environ = "*"
 bcrypt = "*"
+django-crispy-forms = "*"
 
 [dev-packages]
 
