@@ -15,18 +15,19 @@
     </div>
     <div class="container-fluid">
         <div id="subHead" class="row justify-content-around align-content-center align-self-center">
-            <a href="/earrings" class="col-2 text-center">Earrings</a>
-            <a href="/shirts" class="col-2 text-center">Shirts</a>
-            <a href="/signs" class="col-2 text-center">Signs</a>
-            <a href="#" class="col-2 text-center">Contact Us</a>
+            <a href="/" class="col-1 text-center">Home</a>
+            <a href="/earrings" class="col-1 text-center">Earrings</a>
+            <a href="/shirts" class="col-1 text-center">Shirts</a>
+            <a href="/signs" class="col-1 text-center">Signs</a>
+            <a href="#" class="col-1 text-center">Contact</a>
             {% with total_items=cart|length %}
             {% if total_items > 0%}
-                <a href="/cart" class="col-2 text-center">Cart ({{total_items}})</a>
+                <a href="/cart" class="col-1 text-center">Cart ({{total_items}})</a>
             {% else %}
-                <a href="/cart" class="col-2 text-center">Cart</a>
+                <a href="/cart" class="col-1 text-center">Cart</a>
             {% endif %}
             {% endwith %}
-            <div class="col-2 text-center">
+            <div class="col-1 text-center">
                 {% if user %}
                     <a href="/logout">Logout</a>
                 {% else %}

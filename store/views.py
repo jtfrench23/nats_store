@@ -22,23 +22,38 @@ def index(request):
     return render(request, 'index.html', context)
 
 def earrings(request):
+    if 'user_id' in request.session:
+        user = Customer.objects.get(id=request.session['user_id'])
+    else:
+        user=False
     context={
         'all_products': Product.objects.all().filter(product_type = 'earrings'),
         'product_type': 'Earrings',
+        'user': user,
     }
     return render(request, 'index.html', context)
 
 def shirts(request):
+    if 'user_id' in request.session:
+        user = Customer.objects.get(id=request.session['user_id'])
+    else:
+        user=False
     context={
         'all_products': Product.objects.all().filter(product_type = 'shirt'),
         'product_type': 'Shirts',
+        'user': user,
     }
     return render(request, 'index.html', context)
 
 def signs(request):
+    if 'user_id' in request.session:
+        user = Customer.objects.get(id=request.session['user_id'])
+    else:
+        user=False
     context={
         'all_products': Product.objects.all().filter(product_type = 'sign'),
         'product_type': 'Signs',
+        'user': user,
     }
     return render(request, 'index.html', context)
 
