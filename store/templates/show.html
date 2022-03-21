@@ -29,16 +29,14 @@
     </div>
     <div class=".d-none .d-sm-block">
         <h2 class="d-none d-md-block">Similar Products</h2>
-        <div class="row justify-content-between p-3 align-self-center d-none d-md-block">
+        <div class="row d-none d-md-flex">
             {% for product in all_products %}
-                    <div class="text-center col-sm-1 col-md-3 col-lg-2 product_box" >
-                        <div class="align-items-start">
+                    <div class="text-center col-sm-1 col-md-3 col-lg-2" >
                             <a href="/show/product/{{product.id}}">
                                 <img src="http://127.0.0.1:8000/media/{{ product.product_image }}" alt="{{ product.name }}" class="img-thumbnail card-img-top">
                             </a>
                             <p class="card-title">{{product.name}}</p>
                             <p class="card-text">${{product.price}}</p>
-                        </div>
                     </div>
             {% endfor %}
         </div>
