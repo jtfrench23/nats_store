@@ -32,6 +32,9 @@ a{
     background-color: rgb(189, 77, 57);
     height: 100px;
 }
+h1{
+    color: rgb(189, 77, 57);
+}
 h2{
     font-size: 2.5rem;
     color: rgb(189, 77, 57);
