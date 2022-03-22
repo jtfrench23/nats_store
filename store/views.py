@@ -289,3 +289,31 @@ def send_message(request):
     obj.save()
     print(obj.message)
     return redirect('/')
+
+def view_messages(request):
+    if 'owner_id' not in request.session:
+        return redirect('/owner')
+    else:
+        context={
+            'messages':Message.objects.all()
+        }
+        return render(request, 'view_messages.html', context)
+
+def view_one_message(request, id):
+    if 'owner_id' not in request.session:
+        return redirect('/owner')
+    else:
+        message=Message.objects.get(id=id)
+        context={
+            'message':message
+        }
+        return render(request, 'view_one_message.html', context)
+
+def delete_message(request, id):
+    if 'owner_id' not in request.session:
+        return redirect('/owner')
+    else:
+        message=Message.objects.get(id=id)
+        message.delete()
+        return redirect('/view_messages')
+        
