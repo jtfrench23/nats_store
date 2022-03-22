@@ -21,4 +21,6 @@ urlpatterns = [
     path('delete/order/<int:id>', views.order_delete),
     path('ship/<int:id>', views.ship),
     path('undo_ship/<int:id>', views.undo_ship),
+    path('message', views.message_form),
+    path('send/message', views.send_message),
 ]

@@ -1,7 +1,7 @@
 
 from os import name
 from django.shortcuts import render, HttpResponse, redirect
-from .models import Product, Owner, Customer, Order, Order_Item, Address
+from .models import Product, Owner, Customer, Order, Order_Item, Address, Message
 from .forms import CustomerForm, ProductForm, EditForm, LoginForm
 from django.http import HttpResponseRedirect
 import bcrypt
@@ -269,3 +269,23 @@ def undo_ship(request, id):
     o.shipped=False
     o.save()
     return redirect('/orders')
+
+def message_form(request):
+    if 'user_id' not in request.session:
+        return redirect('/login')
+    else:
+        user = Customer.objects.get(id=request.session['user_id'])
+        context = {
+            'customer':user,
+        }
+        return render(request, 'message.html', context)
+
+def send_message(request):
+    obj = Message.objects.create(
+                                    content=request.POST['message'],
+                                    subject=request.POST['subject'],
+                                    customer=Customer.objects.get(id=request.POST['customer_id'])
+                                    )
+    obj.save()
+    print(obj.message)
+    return redirect('/')

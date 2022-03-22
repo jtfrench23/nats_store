@@ -67,3 +67,7 @@ class Address(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     zipcode = models.IntegerField(null=True)
 
+class Message(models.Model):
+    subject= models.CharField(max_length=255)
+    content = models.CharField(max_length=500)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
