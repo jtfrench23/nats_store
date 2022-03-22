@@ -44,17 +44,17 @@
                 {% endif %} -->
             <!-- </div> -->
             <div class="col-sm-2 col-md-4 text-center">
-                <form action="/validate_owner" method="post">
+                <form action="/validate_owner" method="post" class="form">
                     {% csrf_token %}
-                    <label>
+                    <label class="form-group row">
                         Email:
-                        <input type="email" name="email" id="email">
+                        <input type="email" name="email" id="email" class="form-control">
                     </label>
-                    <label>
+                    <label class="form-group row">
                         Password:
-                        <input type="password" name="password" id="password">
+                        <input type="password" name="password" id="password" class="form-control">
                     </label>
-                    <button type="submit">Sign in</button>
+                    <button type="submit" class="form-control row m-1">Sign in</button>
                 </form>
             </div>
         </div>
