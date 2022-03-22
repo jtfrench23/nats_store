@@ -1,7 +1,7 @@
 
 from os import name
 from django.shortcuts import render, HttpResponse, redirect
-from .models import Product, Owner, Customer, Order
+from .models import Product, Owner, Customer, Order, Order_Item, Address
 from .forms import CustomerForm, ProductForm, EditForm, LoginForm
 from django.http import HttpResponseRedirect
 import bcrypt
@@ -245,7 +245,27 @@ def orders(request):
     if 'owner_id' not in request.session:
         return redirect('/owner')
     else:
+        c=Customer.objects.get(id=1)
+        print(c,"$$$$$$$$$$$$$$$$$$$")
+        # Address.objects.create(street='119 S Main', city='Nowhere', customer=Customer.objects.get(id=1), zipcode=12345)
+        # Order.objects.create(customer=Customer.objects.get(id=1))
+        # Order_Item.objects.create(order=Order.objects.get(id=1), product=Product.objects.get(id=18), quantity=1, unit_price=3.99)
         context={
             'all_orders': Order.objects.all().order_by('-id')
         }
         return render(request, 'orders.html', context)
+def order_delete(request, id):
+    o = Order.objects.get(id=id)
+    o.delete()
+    return redirect('/orders')
+
+def ship(request, id):
+    o=Order.objects.get(id=id)
+    o.shipped=True
+    o.save()
+    return redirect('/orders')
+def undo_ship(request, id):
+    o=Order.objects.get(id=id)
+    o.shipped=False
+    o.save()
+    return redirect('/orders')

@@ -23,7 +23,7 @@
                 <th>Order ID</th>
                 <th>Name</th>
                 <th>Date</th>
-                <th>Billing Address</th>
+                <th>Shipping Address</th>
                 <th>Total</th>
                 <th>Status</th>
                 <th>options</th>
@@ -32,15 +32,23 @@
                 {% for order in all_orders %}
                     <tr>
                         <td>{{order.id}}</td>
-                        <td>{{customer.first_name}} {{customer.last_name}}</td>
-                        <td>{{customer.address}}</td>
+                        <td>{{order.customer.first_name}} {{order.customer.last_name}}</td>
+                        <td>{{order.placed_at}}</td>
+                        <td>{{order.customer.address}}</td>
                         <td>{{order.total}}</td>
                         <td>{{order.payment_status}}</td>
-                        {% if order.shipped == false %}
-                            <td><a href="/ship">Mark shipped</a></td>
+                        {% if order.shipped == False %}
+                            <td>
+                                <a href="/ship/{{order.id}}">Mark shipped</a>
+                                <a href="/delete/order/{{order.id}}">Delete</a>
+                            </td>
                         {% else %}
-                            <td><a href="/undo_ship">Mark not shipped</a></td>
+                            <td>
+                                <a href="/undo_ship/{{order.id}}">Mark not shipped</a>
+                                <a href="/delete/order/{{order.id}}">Delete</a>
+                            </td>
                         {% endif %}
+                        
                     </tr>
                 {% endfor %}
             </tbody>

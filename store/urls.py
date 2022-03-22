@@ -18,4 +18,7 @@ urlpatterns = [
     path('register/submit', views.register_customer),
     path('login/user', views.login_user),
     path('orders', views.orders),
+    path('delete/order/<int:id>', views.order_delete),
+    path('ship/<int:id>', views.ship),
+    path('undo_ship/<int:id>', views.undo_ship),
 ]

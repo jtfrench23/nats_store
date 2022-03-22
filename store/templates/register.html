@@ -14,17 +14,17 @@
     <div id="header" class="row justify-content-center">
         <img src="static/css/assets/Untitled-Artwork (1).jpg" alt="French Designs Logo" id="headerImageSmall" class="align-self-center">
     </div>
-    <div class="container-fluid">
-        <div class="row justify-content-around align-content-center align-self-center p-5">
-            <div class="col-sm-2 col-md-4 text-center">
+    <div class="container">
+        <div class="row justify-content-around">
+            <div class="col-sm-2 align-content-center">
                 <h2>Register</h2>
-                <form action="/register/submit" method="post" class="">
+                <form action="/register/submit" method="post" class="form">
                     {% csrf_token %}
                     {{ customerForm.as_p}}
                     <input type="submit" value="Register">
                 </form>
             </div>
-            <div class="col-sm-2 col-md-4 text-center">
+            <div class="col-sm-2">
                 <h2>Login</h2>
                 <form action="/login/user" method="post">
                     {% csrf_token %}
