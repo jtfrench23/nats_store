@@ -10,31 +10,40 @@
     <link rel="stylesheet" href="{% static 'css/style_owner.css' %}">
 </head>
 <body>
-    <table class="table table-dark">
-        <thead>
-            <th>Order ID</th>
-            <th>Name</th>
-            <th>Date</th>
-            <th>Billing Address</th>
-            <th>Total</th>
-            <th>Status</th>
-            <th>options</th>
-        </thead>
-        <tbody>
-            {% for order in all_orders %}
-                <tr>
-                    <td>{{order.id}}</td>
-                    <td>{{customer.first_name}} {{customer.last_name}}</td>
-                    <td>{{customer.address}}</td>
-                    <td>{{order.total}}</td>
-                    <td>{{order.payment_status}}</td>
-                    {% if order.shipped == false %}
-                        <td><a href="/ship">Mark shipped</a></td>
-                    {% else %}
-                        <td><a href="/undo_ship">Mark not shipped</a></td>
-                    {% endif %}
-                </tr>
-            {% endfor %}
-        </tbody>
+    <div class="container-fluid">
+        <div class="row p-2 justify-content-end align-items-center bg-primary text-light">
+            <h1 class="col-9">Owner Dashboard</h1>
+            <a href="/product_manager" class="col-1"><button>Products</button></a>
+            <a href="/logout" class="col-1"><button>Logout</button></a>
+        </div>
+    </div>
+    <div class="container">
+        <table class="table table-dark">
+            <thead>
+                <th>Order ID</th>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Billing Address</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>options</th>
+            </thead>
+            <tbody>
+                {% for order in all_orders %}
+                    <tr>
+                        <td>{{order.id}}</td>
+                        <td>{{customer.first_name}} {{customer.last_name}}</td>
+                        <td>{{customer.address}}</td>
+                        <td>{{order.total}}</td>
+                        <td>{{order.payment_status}}</td>
+                        {% if order.shipped == false %}
+                            <td><a href="/ship">Mark shipped</a></td>
+                        {% else %}
+                            <td><a href="/undo_ship">Mark not shipped</a></td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </div>
 </body>
 </html>

@@ -1,7 +1,7 @@
 
 from os import name
 from django.shortcuts import render, HttpResponse, redirect
-from .models import Product, Owner, Customer
+from .models import Product, Owner, Customer, Order
 from .forms import CustomerForm, ProductForm, EditForm, LoginForm
 from django.http import HttpResponseRedirect
 import bcrypt
@@ -240,3 +240,12 @@ def delete_product(request, id):
     p=Product.objects.get(id=id)
     p.delete()
     return redirect('/product_manager')
+
+def orders(request):
+    if 'owner_id' not in request.session:
+        return redirect('/owner')
+    else:
+        context={
+            'all_orders': Order.objects.all().order_by('-id')
+        }
+        return render(request, 'orders.html', context)
