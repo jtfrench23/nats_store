@@ -10,28 +10,37 @@
     <link rel="stylesheet" href="{% static 'css/style_owner.css' %}">
 </head>
 <body>
-    <table class="table table-dark">
-        <thead>
-            <th>product</th>
-            <th>inventory</th>
-            <th>price</th>
-            <th>img</th>
-            <th>options</th>
-        </thead>
-        {% for product in all_products %}
-            <tr>
-                <td>{{ product.name }}</td>
-                <td>{{ product.stock }}</td>
-                <td>{{ product.price }}</td>
-                <td> <img src="http://127.0.0.1:8000/media/{{ product.product_image }}" alt="product image"></td>
-                <td>
-                    <a href="/edit/product/{{product.id}}">edit</a>
-                    <a href="/delete/product/{{product.id}}">delete</a>
-                </td>
-            </tr>
-        {% endfor %}
-    </table>
-    <a href="/owner/add_product"><button>Add Product</button></a>
-    <a href="/logout"><button>Logout</button></a>
+    <div class="container-fluid">
+        <div class="row p-2 justify-content-end align-items-center bg-primary text-light">
+            <h1 class="col-9">Owner Dashboard</h1>
+            <a href="/owner/add_product" class="col-1"><button>Add Product</button></a>
+            <a href="/orders" class="col-1"><button>Orders</button></a>
+            <a href="/logout" class="col-1"><button>Logout</button></a>
+        </div>
+    </div>
+    <div class="container">
+        <table class="table table-dark">
+            <thead>
+                <th>product</th>
+                <th>inventory</th>
+                <th>price</th>
+                <th>img</th>
+                <th>options</th>
+            </thead>
+            {% for product in all_products %}
+                <tr>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.stock }}</td>
+                    <td>{{ product.price }}</td>
+                    <td> <img src="http://127.0.0.1:8000/media/{{ product.product_image }}" alt="product image"></td>
+                    <td>
+                        <a href="/edit/product/{{product.id}}">edit</a>
+                        <a href="/delete/product/{{product.id}}">delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    
 </body>
 </html>
