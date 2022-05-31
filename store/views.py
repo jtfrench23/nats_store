@@ -287,7 +287,7 @@ def send_message(request):
                                     customer=Customer.objects.get(id=request.POST['customer_id'])
                                     )
     obj.save()
-    print(obj.message)
+    
     return redirect('/')
 
 def view_messages(request):
@@ -316,4 +316,3 @@ def delete_message(request, id):
         message=Message.objects.get(id=id)
         message.delete()
         return redirect('/view_messages')
-        

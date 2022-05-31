@@ -26,13 +26,15 @@
                 <th>options</th>
             </thead>
             {% for message in messages %}
-                <td>{{message.subject}}</td>
-                <td>{{message.customer.first_name}}</td>
-                <td>{{message.customer.email}}</td>
-                <td>
-                    <a href="/view/message/{{message.id}}">view</a>
-                    <a href="/delete/message/{{message.id}}">delete</a>
-                </td>
+                <tr>
+                    <td>{{message.subject}}</td>
+                    <td>{{message.customer.first_name}}</td>
+                    <td>{{message.customer.email}}</td>
+                    <td>
+                        <a href="/view/message/{{message.id}}">view</a>
+                        <a href="/delete/message/{{message.id}}">delete</a>
+                    </td>
+                </tr>
             {% endfor %}
         </table>
     </div>
